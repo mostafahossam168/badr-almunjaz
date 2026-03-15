@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بدر المنجز للاستقدام</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--g:#1b7a50;--gm:#229962;--gl:#2db878;--ga:#35d68a;--gold:#c8a84b;--td:#1a1a1a;--tm:#444;--bg:#f3f9f5;--w:#fff}
+    html{scroll-behavior:smooth}
+    body{font-family:'Cairo',sans-serif;background:var(--w);color:var(--td);overflow-x:hidden}
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e5e5e5;padding:0 36px;display:flex;align-items:center;justify-content:space-between;height:68px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer}
+    .lbox{display:flex;align-items:center;justify-content:center}
+    .lbox svg{width:52px;height:52px}
+    .ltxt{font-size:11px;color:var(--g);font-weight:800;line-height:1.4;max-width:90px}
+    .nl{display:flex;align-items:center;gap:4px;list-style:none}
+    .nl li{position:relative}
+    .nl a{text-decoration:none;color:var(--td);font-size:13px;font-weight:600;padding:8px 11px;border-radius:6px;display:flex;align-items:center;gap:3px;transition:all .2s;cursor:pointer}
+    .nl a:hover{color:var(--gm);background:#f0f9f4}
+    .hd>a::after{content:'‹';font-size:15px}
+    .dd{display:none;position:absolute;top:calc(100% + 6px);right:0;background:#fff;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.12);min-width:160px;padding:5px 0;z-index:999}
+    .hd:hover .dd{display:block}
+    .dd a{display:block;padding:9px 16px;font-size:13px;border-radius:0}
+    .dd a:hover{background:#f0f9f4;color:var(--gm)}
+    .lang-btn{display:flex;align-items:center;gap:3px;cursor:pointer;font-size:13px;font-weight:600;border:1px solid #ddd;padding:5px 10px;border-radius:20px;position:relative}
+    .lang-dd{display:none;position:absolute;top:calc(100% + 6px);right:0;background:#fff;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.12);min-width:130px;padding:6px 0;z-index:999}
+    .lang-btn:hover .lang-dd{display:block}
+    .lang-dd a{display:flex;align-items:center;gap:8px;padding:9px 14px;font-size:13px;text-decoration:none;color:var(--td)}
+    .lang-dd a:hover{background:#f0f9f4}
+    .btn-login{background:transparent;border:2px solid var(--g);color:var(--g);font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;padding:7px 18px;border-radius:25px;cursor:pointer;transition:all .2s;text-decoration:none}
+    .btn-login:hover{background:var(--g);color:#fff}
+    /* SIDEBAR */
+    .ss{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;background:var(--g);border-radius:12px 0 0 12px;overflow:hidden}
+    .ss a{display:flex;align-items:center;justify-content:center;width:38px;height:38px;color:#fff;text-decoration:none;font-size:14px;transition:background .2s}
+    .ss a:hover{background:var(--gl)}
+    /* PAGES */
+    .page{display:none}
+    .page.active{display:block}
+    /* HERO */
+    .hero{position:relative;height:490px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80') center/cover}
+    .hov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,92,58,.88),rgba(30,112,72,.72))}
+    .hcont{position:relative;z-index:2;text-align:center;color:#fff;padding:0 20px}
+    .hsub{font-size:14px;font-weight:600;opacity:.9;margin-bottom:10px}
+    .htitle{font-size:38px;font-weight:900;line-height:1.4;margin-bottom:28px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+    .hbtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .hbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:30px;font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;text-decoration:none;cursor:pointer;border:none;transition:all .25s}
+    .hp{background:rgba(255,255,255,.95);color:var(--g)}
+    .hp:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+    .hs{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.6)}
+    .hs:hover{background:rgba(255,255,255,.25)}
+    /* INNER PAGE HERO */
+    .phero{position:relative;height:190px;background:linear-gradient(135deg,#1a5c3a,#2d8e5e);display:flex;align-items:flex-end;overflow:hidden}
+    .phbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80') center/cover;opacity:.22}
+    .phov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,92,58,.8),rgba(30,112,72,.6))}
+    .phbc{position:relative;z-index:2;color:#fff;padding:18px 36px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px}
+    .phbc a{color:rgba(255,255,255,.8);text-decoration:none}
+    /* SECTIONS */
+    section{padding:56px 36px}
+    .stitle{font-size:32px;font-weight:900;margin-bottom:8px}
+    .ssub{font-size:14px;color:#888;margin-bottom:32px}
+    .center{text-align:center}
+    .mw{max-width:1180px;margin:0 auto}
+    /* ABOUT */
+    .ag{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    .ai img{width:100%;border-radius:18px;border:5px solid var(--gold);height:340px;object-fit:cover}
+    .at p{font-size:14px;line-height:1.9;color:var(--tm);margin-top:12px}
+    /* FEATURES */
+    .fg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .fc{background:#fff;border-radius:16px;padding:30px 22px;text-align:center;border:1px solid #eee;transition:all .3s}
+    .fc:hover{box-shadow:0 12px 40px rgba(30,112,72,.12);transform:translateY(-4px)}
+    .fc.act{background:linear-gradient(135deg,var(--g),var(--gl));color:#fff;border:none}
+    .fi{font-size:36px;margin-bottom:12px}
+    .fc h3{font-size:16px;font-weight:800;margin-bottom:10px}
+    .fc p{font-size:13px;line-height:1.8;color:#666}
+    .fc.act p{color:rgba(255,255,255,.85)}
+    .fc.act h3{color:#fff}
+    /* SERVICES */
+    .svch{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px}
+    .svcn{display:flex;gap:10px}
+    .svcn button{width:40px;height:40px;border-radius:50%;border:2px solid #ddd;background:#fff;font-size:17px;cursor:pointer;transition:all .2s}
+    .svcn button:hover{border-color:var(--gm);color:var(--gm)}
+    .svcg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .svcc{border-radius:16px;overflow:hidden;position:relative;height:280px;cursor:pointer;transition:transform .3s}
+    .svcc:hover{transform:translateY(-5px)}
+    .svcc img{width:100%;height:100%;object-fit:cover}
+    .scov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%)}
+    .scin{position:absolute;bottom:0;left:0;right:0;padding:16px;color:#fff;display:flex;align-items:center;justify-content:space-between}
+    .scin span{font-size:14px;font-weight:800}
+    .scib{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:13px}
+    /* JOURNEY */
+    .jrow{display:flex;justify-content:center;gap:0;flex-wrap:wrap}
+    .jstep{text-align:center;padding:22px 14px;position:relative;flex:1;min-width:130px}
+    .jstep::after{content:'←';position:absolute;right:-12px;top:28px;font-size:18px;color:#ccc}
+    .jstep:last-child::after{display:none}
+    .jcirc{width:56px;height:56px;border-radius:50%;background:var(--bg);border:3px solid #ddd;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;transition:all .3s}
+    .jstep:hover .jcirc{background:var(--g);border-color:var(--g)}
+    .jstep h4{font-size:13px;font-weight:800;margin-bottom:4px}
+    .jstep p{font-size:11px;color:#888}
+    /* OFFERS */
+    .og{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .oc{background:#fff;border-radius:15px;padding:22px 16px;text-align:center;border:1px solid #eee;transition:all .3s}
+    .oc:hover{box-shadow:0 8px 30px rgba(0,0,0,.1);transform:translateY(-3px)}
+    .oflag{width:60px;height:60px;border-radius:50%;margin:0 auto 12px;overflow:hidden;border:3px solid var(--bg)}
+    .oflag img{width:100%;height:100%;object-fit:cover}
+    .octy{font-size:17px;font-weight:900;color:var(--g);margin-bottom:5px}
+    .oprice{font-size:15px;font-weight:800;margin-bottom:4px}
+    .oprice small{font-size:11px;color:#888;font-weight:600}
+    .osal{font-size:11px;color:var(--g);font-weight:700;margin-bottom:3px}
+    .odur{font-size:10px;color:#999;margin-bottom:12px}
+    .obnote{font-size:10px;color:#c0392b;font-weight:600;margin-bottom:10px}
+    .obtn{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border:none;font-family:'Cairo',sans-serif;font-size:12px;font-weight:700;color:var(--g);padding:8px 16px;border-radius:18px;cursor:pointer;transition:all .2s}
+    .obtn:hover{background:var(--g);color:#fff}
+    /* STATS */
+    .stg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:860px;margin:0 auto}
+    .stc{background:var(--bg);border-radius:16px;padding:36px 20px;text-align:center;border:1px solid #eee}
+    .stc.hi{background:var(--g);color:#fff}
+    .sti{font-size:32px;margin-bottom:10px}
+    .stn{font-size:38px;font-weight:900;color:var(--g);margin-bottom:6px}
+    .stc.hi .stn{color:#fff}
+    .stl{font-size:13px;font-weight:600;color:#555}
+    .stc.hi .stl{color:rgba(255,255,255,.85)}
+    /* REQUIREMENTS */
+    .rqg{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+    .rqb{background:#fff;border-radius:18px;padding:32px 28px}
+    .rqb h3{font-size:19px;font-weight:900;margin-bottom:18px;color:var(--g)}
+    .rql{list-style:none}
+    .rql li{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #f0f0f0;font-size:13px;font-weight:600;color:var(--tm);flex-direction:row-reverse}
+    .rql li:last-child{border-bottom:none}
+    .rqi{width:34px;height:34px;border-radius:9px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+    .rqinto{font-size:12px;color:#777;line-height:1.8;margin-bottom:18px}
+    .rqinto a{color:var(--g);font-weight:700}
+    /* CS */
+    .csg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto}
+    .csc{background:var(--bg);border-radius:15px;padding:24px 16px;text-align:center;border:1px solid #eee}
+    .csav{width:72px;height:72px;border-radius:50%;margin:0 auto 12px;overflow:hidden;background:#dde8e2}
+    .csav img{width:100%;height:100%;object-fit:cover}
+    .csn{font-size:14px;font-weight:800;margin-bottom:10px}
+    .csa{display:flex;gap:8px;justify-content:center}
+    .csb{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;cursor:pointer;border:none;transition:transform .2s}
+    .csb:hover{transform:scale(1.1)}
+    .cscall{background:#e8f5e9;color:#2e7d32}
+    .cswa{background:#e8f5e9;color:#25d366}
+    /* PARTNERS */
+    .prt{background:linear-gradient(135deg,#e8ede8,#f0f4f0);padding:28px 36px}
+    .prti{display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap}
+    .prl{display:flex;align-items:center;gap:7px;opacity:.7;transition:opacity .2s;filter:grayscale(40%)}
+    .prl:hover{opacity:1;filter:none}
+    .prl-t{font-size:13px;font-weight:800;color:#555}
+    /* FOOTER */
+    .footer{background:var(--g);color:#fff;padding:52px 36px 26px}
+    .fg4{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:32px;margin-bottom:32px}
+    .fbrand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .fdesc{font-size:13px;line-height:1.9;color:rgba(255,255,255,.72);margin-bottom:14px}
+    .fso{display:flex;gap:9px}
+    .fso a{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,.8);text-decoration:none;transition:all .2s}
+    .fso a:hover{background:rgba(255,255,255,.15);color:#fff}
+    .fcol h4{font-size:14px;font-weight:800;margin-bottom:12px;padding-bottom:7px;border-bottom:2px solid rgba(255,255,255,.15)}
+    .fcol ul{list-style:none}
+    .fcol ul li{margin-bottom:8px}
+    .fcol ul li a{color:rgba(255,255,255,.7);text-decoration:none;font-size:12px;transition:color .2s;cursor:pointer}
+    .fcol ul li a:hover{color:var(--gold)}
+    .fci{display:flex;align-items:flex-start;gap:7px;margin-bottom:9px;font-size:12px;color:rgba(255,255,255,.72)}
+    .fci span{flex-shrink:0;font-size:14px}
+    .fbdg{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+    .fbdg span{background:rgba(255,255,255,.12);border-radius:7px;padding:3px 9px;font-size:11px;color:rgba(255,255,255,.8);font-weight:700}
+    .fbot{border-top:1px solid rgba(255,255,255,.15);padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+    .fbot p{font-size:12px;color:rgba(255,255,255,.5)}
+    .fbl{display:flex;gap:16px}
+    .fbl a{color:rgba(255,255,255,.5);font-size:12px;text-decoration:none}
+    .fbl a:hover{color:var(--gold)}
+    /* SEARCH BAR */
+    .sbs{background:#fff;padding:28px 36px;border-bottom:1px solid #eee}
+    .sbt{font-size:17px;font-weight:800;margin-bottom:14px;text-align:right;color:var(--g)}
+    .sff{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .sfg{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+    .sfl{font-size:11px;font-weight:700;color:var(--tm);display:flex;align-items:center;gap:3px}
+    .sfsel{border:1.5px solid #ddd;border-radius:8px;padding:8px 12px;font-family:'Cairo',sans-serif;font-size:12px;min-width:105px;text-align:right;cursor:pointer;background:#fff}
+    .sfsel:focus{outline:none;border-color:var(--gm)}
+    .btn-fil{background:var(--g);color:#fff;border:none;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;padding:10px 22px;border-radius:22px;cursor:pointer;transition:all .2s}
+    .btn-fil:hover{background:var(--gl)}
+    /* WORKER CARDS */
+    .wg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:32px 36px;max-width:1180px;margin:0 auto}
+    .bc{border-radius:16px;overflow:hidden;border:1px solid #eee;background:#fff;transition:box-shadow .3s}
+    .bc:hover{box-shadow:0 10px 40px rgba(0,0,0,.1)}
+    .bctop{background:linear-gradient(135deg,#0f5f5f,#1a8080);padding:16px;display:flex;align-items:center;justify-content:space-between}
+    .bcav{width:76px;height:76px;border-radius:50%;border:3px solid rgba(255,255,255,.6);overflow:hidden;background:#ddd;flex-shrink:0}
+    .bcav img{width:100%;height:100%;object-fit:cover}
+    .bcna{color:#fff;text-align:right;flex:1;padding-right:12px}
+    .bcnm{font-size:13px;font-weight:800;margin-bottom:3px}
+    .bcrl{font-size:11px;opacity:.85}
+    .bcpb{background:rgba(255,255,255,.15);border-radius:9px;padding:7px 11px;text-align:center;color:#fff}
+    .bcp{font-size:12px;font-weight:800}
+    .bcpl{font-size:10px;opacity:.8}
+    .bcd{background:rgba(255,255,255,.1);border-radius:7px;padding:3px 7px;color:#fff;font-size:10px;margin-top:3px}
+    .bcbody{padding:14px}
+    .bcst{font-size:11px;font-weight:700;color:var(--g);border-bottom:1px solid #eee;padding-bottom:5px;margin-bottom:9px;text-align:right}
+    .bcd2{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:12px}
+    .bci{display:flex;flex-direction:column;align-items:flex-end}
+    .bcil{font-size:10px;color:#999}
+    .bciv{font-size:11px;font-weight:700}
+    .bcw{border:1px solid #c62828;border-radius:7px;padding:7px 10px;font-size:10px;color:#c62828;text-align:center;margin-bottom:10px;font-weight:700}
+    .bcac{display:flex;gap:6px}
+    .bcbtn{flex:1;padding:8px 6px;border-radius:18px;border:2px solid var(--g);font-family:'Cairo',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;background:#fff;color:var(--g);text-align:center}
+    .bcbtn:hover,.bcbtn.pr{background:var(--g);color:#fff}
+    /* TRANSFER CARDS */
+    .tc{border-radius:13px;overflow:hidden;border:1px solid #eee;background:#fff;transition:box-shadow .3s}
+    .tc:hover{box-shadow:0 8px 30px rgba(0,0,0,.08)}
+    .tcto{border-bottom:3px solid var(--gm);padding:14px;display:flex;align-items:center;justify-content:space-between}
+    .tcav{width:46px;height:46px;border-radius:50%;background:var(--g);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .tcna{flex:1;padding-right:10px;text-align:right}
+    .tcnm{font-size:13px;font-weight:800;color:var(--g)}
+    .tcid{font-size:11px;color:#888}
+    .tcb{padding:12px 14px}
+    .tcr{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #f5f5f5;font-size:12px}
+    .tcr:last-of-type{border-bottom:none}
+    .tcrl{font-weight:700;color:var(--g)}
+    .tcrv{background:var(--bg);border-radius:5px;padding:2px 9px;font-size:11px}
+    .tca{display:flex;gap:7px;padding:11px 14px;border-top:1px solid #eee}
+    .tcbtn{flex:1;padding:8px;border-radius:8px;border:none;font-family:'Cairo',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s}
+    .tcbtn.pr{background:var(--g);color:#fff}
+    .tcbtn.se{background:#9e9e9e;color:#fff}
+    /* CONTRACT */
+    .ch{position:relative;min-height:280px;background:linear-gradient(135deg,#1a5c3a,#2d8e5e);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .chbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80') center/cover;opacity:.22}
+    .cht{position:relative;z-index:2;color:#fff;padding:50px 60px;text-align:center}
+    .cht h1{font-size:30px;font-weight:900;margin-bottom:14px}
+    .cht p{font-size:13px;line-height:1.9;max-width:750px;margin:0 auto}
+    .cdet{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;padding:52px 36px;max-width:1060px;margin:0 auto}
+    .cdet img{width:100%;height:320px;object-fit:cover;border-radius:16px}
+    .cib{background:#f9f9e8;border-radius:13px;padding:26px 22px}
+    .cib p{font-size:13px;line-height:1.9;color:var(--tm);margin-bottom:18px}
+    .bstart{display:inline-flex;align-items:center;gap:7px;background:var(--g);color:#fff;border:none;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;padding:11px 24px;border-radius:22px;cursor:pointer;text-decoration:none}
+    .hxtitle{text-align:center;font-size:28px;font-weight:900;margin-bottom:36px}
+    .hxrow{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+    .hxs{text-align:center;width:170px}
+    .hxsh{width:96px;height:96px;background:#f0f5f0;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;position:relative}
+    .hxn{width:32px;height:32px;border-radius:50%;background:var(--g);color:#fff;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;position:absolute;top:-7px;right:-7px}
+    .hxt{font-size:13px;font-weight:800;color:var(--g);margin-bottom:5px}
+    .hxd{font-size:11px;color:#777;line-height:1.7}
+    /* VERIFY */
+    .vwrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 68px);background:var(--bg)}
+    .vc{background:#fff;border-radius:22px;padding:46px 36px;text-align:center;max-width:500px;width:95%;box-shadow:0 10px 50px rgba(0,0,0,.1)}
+    .vi{font-size:72px;margin-bottom:18px}
+    .vt{font-size:24px;font-weight:900;margin-bottom:7px}
+    .vs{font-size:13px;color:var(--g);font-weight:700;margin-bottom:5px}
+    .vd{font-size:12px;color:#888;margin-bottom:26px}
+    .otpi{display:flex;gap:10px;justify-content:center;margin-bottom:26px}
+    .otpf{width:62px;height:62px;border:2px solid #ddd;border-radius:9px;font-size:26px;font-weight:900;text-align:center;font-family:'Cairo',sans-serif;outline:none;transition:border-color .2s}
+    .otpf:focus{border-color:var(--gm)}
+    .otpf.fl{border-color:var(--g)}
+    .bvfy{width:100%;padding:13px;border-radius:28px;background:var(--g);color:#fff;font-family:'Cairo',sans-serif;font-size:15px;font-weight:800;border:none;cursor:pointer;margin-bottom:16px;transition:background .2s}
+    .bvfy:hover{background:var(--gl)}
+    .rsl{color:var(--gold);font-size:13px;cursor:pointer;font-weight:700}
+    /* REGISTER */
+    .rwrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 68px);background:var(--bg);padding:36px 20px}
+    .rc{background:#fff;border-radius:22px;padding:44px 36px;max-width:580px;width:100%;box-shadow:0 10px 50px rgba(0,0,0,.1)}
+    .rsteps{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:32px}
+    .rsd{width:34px;height:34px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#999;transition:all .3s}
+    .rsd.done{background:var(--g);color:#fff}
+    .rsd.act{background:var(--gm);color:#fff}
+    .rsl2{flex:1;max-width:38px;height:3px;background:#eee;border-radius:2px}
+    .rsl2.done{background:var(--g)}
+    .fg2{margin-bottom:18px}
+    .fl2{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;margin-bottom:7px;justify-content:flex-end}
+    .fi2{width:100%;border:1.5px solid #ddd;border-radius:9px;padding:10px 13px;font-family:'Cairo',sans-serif;font-size:13px;text-align:right;transition:border-color .2s;outline:none}
+    .fi2:focus{border-color:var(--gm)}
+    .fr2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .bsub{width:100%;padding:12px;border-radius:28px;background:var(--g);color:#fff;font-family:'Cairo',sans-serif;font-size:14px;font-weight:800;border:none;cursor:pointer;margin-bottom:12px;transition:background .2s}
+    .bsub:hover{background:var(--gl)}
+    .fft{text-align:center;font-size:12px}
+    .fft a{color:var(--gold);font-weight:700;cursor:pointer}
+    /* MODAL */
+    .mov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;align-items:center;justify-content:center}
+    .mov.open{display:flex}
+    .mo{background:#fff;border-radius:22px;width:500px;max-width:95vw;overflow:hidden;position:relative}
+    .moh{background:linear-gradient(135deg,#1a5c3a,#2d8e5e);padding:28px;text-align:center}
+    .moc{position:absolute;top:13px;left:13px;background:rgba(255,255,255,.8);border:none;font-size:19px;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .mob{padding:28px}
+    .mfrl{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+    .rem{display:flex;align-items:center;gap:5px;font-size:12px;cursor:pointer}
+    .fgt{color:var(--g);font-size:12px;font-weight:700;text-decoration:none}
+    .mft{text-align:center;font-size:12px;margin-top:12px}
+    .mft a{color:var(--gold);font-weight:700;cursor:pointer}
+    /* CHAT */
+    .cb{position:fixed;left:18px;bottom:18px;width:50px;height:50px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;z-index:999;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .2s;text-decoration:none}
+    .cb:hover{transform:scale(1.1)}
+    .cb2{left:78px;background:#25d366}
+    /* LOAD MORE */
+    .lmw{text-align:center;padding:16px 0 36px}
+    .lmbtn{background:#555;color:#fff;border:none;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;padding:11px 38px;border-radius:8px;cursor:pointer}
+    /* RESPONSIVE */
+    @media(max-width:1024px){.fg,.svcg{grid-template-columns:repeat(2,1fr)}.fg4{grid-template-columns:1fr 1fr}.og{grid-template-columns:repeat(2,1fr)}.wg{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.nav{padding:0 12px}.nl{display:none}.htitle{font-size:24px}.ag,.rqg,.cdet,.fr2{grid-template-columns:1fr}.fg,.svcg,.og,.csg,.wg,.stg{grid-template-columns:1fr}.fg4{grid-template-columns:1fr}section{padding:40px 14px}.sff{justify-content:flex-start}.wg{padding:24px 14px}}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="lbox">
+      <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+        <rect width="60" height="60" rx="10" fill="#1b7a50"/>
+        <rect x="2" y="2" width="56" height="56" rx="9" fill="none" stroke="#c8a84b" stroke-width="2"/>
+        <!-- B letter stylized -->
+        <text x="7" y="38" font-family="Arial" font-weight="900" font-size="28" fill="white">BM</text>
+        <!-- gold underline -->
+        <rect x="7" y="41" width="46" height="3" rx="1.5" fill="#c8a84b"/>
+        <!-- small arabic text -->
+        <text x="30" y="54" font-family="Arial" font-size="7" fill="rgba(255,255,255,0.8)" text-anchor="middle">BADR AL-MUNJAZ</text>
+      </svg>
+    </div>
+    <div class="ltxt">بدر المنجز<br>للاستقدام</div>
+  </div>
+  <ul class="nl">
+    <li><a onclick="showPage('home')">الرئيسية</a></li>
+    <li class="hd"><a>خدماتنا</a>
+      <div class="dd">
+        <a onclick="showPage('recruit')">طلب استقدام</a>
+        <a onclick="showPage('transfer')">طلب نقل خدمات</a>
+        <a onclick="showPage('rental')">طلب تأجير</a>
+      </div>
+    </li>
+    <li class="hd"><a>رحلة الاستقدام</a>
+      <div class="dd">
+        <a onclick="showPage('contract')">تعاقد الاستقدام</a>
+        <a onclick="showPage('arrival')">وصول العمالة</a>
+        <a onclick="showPage('recruit')">اختيار العمالة</a>
+      </div>
+    </li>
+    <li class="hd"><a>عن الاستقدام</a>
+      <div class="dd">
+        <a onclick="showPage('policies')">سياسات الاستقدام</a>
+        <a onclick="showPage('musaned')">مبادرة مساند</a>
+      </div>
+    </li>
+    <li class="hd"><a>الدعم</a>
+      <div class="dd">
+        <a onclick="showPage('articles')">مقالات تهمك</a>
+        <a href="#">مركز المساعدة</a>
+        <a onclick="showPage('contact')">تواصل معنا</a>
+        <a href="#">خدمة العملاء</a>
+      </div>
+    </li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="lang-btn">🌐
+      <div class="lang-dd">
+        <a href="#">🇺🇸 English</a>
+        <a href="#">🇸🇦 Arabic</a>
+      </div>
+    </div>
+    <a class="btn-login" onclick="document.getElementById('mo').classList.add('open')">تسجيل الدخول</a>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="ss">
+  <a href="#">𝕏</a><a href="#">📸</a><a href="#">👻</a><a href="#">🎵</a>
+</div>
+
+<!-- ====== HOME ====== -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hbg"></div><div class="hov"></div>
+    <div class="hcont">
+      <div class="hsub">بدر المنجز للاستقدام</div>
+      <h1 class="htitle">أفضل مكتب استقدام العمالة المنزلية<br>بالسعودية بمعايير دولية / بمهنية عالية</h1>
+      <div class="hbtns">
+        <a class="hbtn hp" onclick="showPage('recruit')">🧳 طلب استقدام</a>
+        <a class="hbtn hs" onclick="showPage('transfer')">🔄 طلب نقل الخدمات</a>
+      </div>
+    </div>
+  </div>
+
+  <section style="background:#fff">
+    <div class="ag mw">
+      <div class="ai"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="مكتب"></div>
+      <div class="at">
+        <div style="font-size:12px;font-weight:700;color:var(--ga);margin-bottom:5px">من نحن</div>
+        <div class="stitle">من <span style="color:var(--gold)">نحن</span></div>
+        <p>انطلق مكتب بدر المنجز لخدمات استقدام العمالة المنزلية برؤية عالمية، يقودها الطموح نحو خلق آليات جديدة وسهلة للوصول إلى أيدي عاملة أمينة وعلى أعلى قدر من الكفاءة وذلك لتقديم حلول الاستقدام لإيجاد العمالة المنزلية الأنسب لعملائنا. يعتبر مكتب بدر المنجز أفضل مكتب استقدام منزلية حاصل على ترخيص من منصة مساند الحكومية لتوفير خدمات استقدام عمالة منزلية بمعايير الجودة العالمية.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg)">
+    <div class="mw">
+      <div class="stitle center" style="margin-bottom:32px">لماذا تختارنا؟</div>
+      <div class="fg">
+        <div class="fc act"><div class="fi">🎧</div><h3>خدمة عملاء مميزة</h3><p>فريق خدمة العملاء معكم خطوة بخطوة بدءاً من طلب استقدام عمالة منزلية حتى وصول العمالة إليكم.</p></div>
+        <div class="fc"><div class="fi">💻</div><h3>خدمات استقدام رقمية متكاملة</h3><p>خطوات بسيطة تفصلك عن استقدام العمالة المنزلية التي تحتاجها بمعايير الجودة العالمية.</p></div>
+        <div class="fc"><div class="fi">👥</div><h3>المتابعة المستمرة والتطوير الشامل</h3><p>نوفر كافة الإمكانيات لمتابعة احتياجات العملاء وتسهيل عملهم بما يتوافق مع نظام العمل السعودي.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#fff">
+    <div class="mw">
+      <div class="svch">
+        <div><div class="stitle">خدمات الاستقدام</div><div class="ssub">تعرف على الخدمات التي نقدمها للمجتمع ...</div></div>
+        <div class="svcn"><button>→</button><button>←</button></div>
+      </div>
+      <div class="svcg">
+        <div class="svcc" onclick="showPage('contract')"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=500&q=80" alt=""><div class="scov"></div><div class="scin"><span>تعاقد الاستقدام</span><div class="scib">🎯</div></div></div>
+        <div class="svcc" onclick="showPage('recruit')"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500&q=80" alt=""><div class="scov"></div><div class="scin"><span>وصول العمالة</span><div class="scib">🎯</div></div></div>
+        <div class="svcc" onclick="showPage('recruit')"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt=""><div class="scov"></div><div class="scin"><span>اختيار العمالة</span><div class="scib">🎯</div></div></div>
+        <div class="svcc"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=500&q=80" alt=""><div class="scov"></div><div class="scin"><span>سياسات الاستقدام</span><div class="scib">🎯</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg)">
+    <div class="stitle center" style="margin-bottom:8px">رحلة الاستقدام</div>
+    <div class="ssub center">خطوات بسيطة نسير بها معك حتى وصول عمالتك</div>
+    <div class="jrow">
+      <div class="jstep"><div class="jcirc">✅</div><h4>التسجيل</h4><p>إنشاء حساب على المنصة</p></div>
+      <div class="jstep"><div class="jcirc">📝</div><h4>اختيار العمالة</h4><p>اختر الجنسية والتخصص</p></div>
+      <div class="jstep"><div class="jcirc">💳</div><h4>التعاقد والدفع</h4><p>دفع رسوم عبر مساند</p></div>
+      <div class="jstep"><div class="jcirc">✈️</div><h4>وصول العمالة</h4><p>استقبال العامل إليك</p></div>
+    </div>
+  </section>
+
+  <!-- OFFERS - Updated prices from WhatsApp image -->
+  <section style="background:#fafafa" id="offers">
+    <div class="stitle center" style="margin-bottom:6px">عروضنا غير</div>
+    <div class="ssub center" style="margin-bottom:36px">يمكنك اختيار الدولة التي تتم عملية الاستقدام منها</div>
+    <div class="og mw">
+      <div class="oc"><div class="oflag"><img src="https://flagcdn.com/w160/bi.png" alt="بورندي"></div><div class="octy">بورندي</div><div class="oprice">4,015 <small>ريال</small></div><div class="osal">الراتب: 850 ريال/شهر</div><div class="odur">⏱️ مدة الاستقدام: شهر</div><button class="obtn" onclick="showPage('recruit')">اطلب الآن ←</button></div>
+      <div class="oc"><div class="oflag"><img src="https://flagcdn.com/w160/et.png" alt="اثيوبيا"></div><div class="octy">اثيوبيا</div><div class="oprice">3,500 <small>ريال</small></div><div class="osal">الراتب: 1,000 ريال/شهر</div><div class="odur">⏱️ مدة الاستقدام: 45 يوم</div><button class="obtn" onclick="showPage('recruit')">اطلب الآن ←</button></div>
+      <div class="oc"><div class="oflag"><img src="https://flagcdn.com/w160/ke.png" alt="كينيا"></div><div class="octy">كينيا</div><div class="oprice">4,500 <small>ريال</small></div><div class="osal">الراتب: 900 ريال/شهر</div><div class="odur">⏱️ مدة الاستقدام: شهر</div><button class="obtn" onclick="showPage('recruit')">اطلب الآن ←</button></div>
+      <div class="oc"><div class="oflag"><img src="https://flagcdn.com/w160/ph.png" alt="الفلبين"></div><div class="octy">الفلبين</div><div class="oprice">16,699 <small>ريال</small></div><div class="osal">الراتب: 1,500 ريال/شهر</div><div class="odur">⏱️ مدة الاستقدام: شهرين</div><button class="obtn" onclick="showPage('recruit')">اطلب الآن ←</button></div>
+      <div class="oc"><div class="oflag"><img src="https://flagcdn.com/w160/bd.png" alt="بنجلاديش"></div><div class="octy">بنجلاديش</div><div class="oprice">6,500 <small>ريال</small></div><div class="osal">الراتب: 1,000 ريال/شهر</div><div class="odur">⏱️ مدة الاستقدام: 45 يوم</div><button class="obtn" onclick="showPage('recruit')">اطلب الآن ←</button></div>
+      <div class="oc"><div class="oflag"><img src="https://flagcdn.com/w160/pk.png" alt="باكستان"></div><div class="octy">باكستان</div><div class="oprice">5,400 <small>ريال</small></div><div class="osal">الراتب: 1,000 ريال/شهر</div><div class="odur">⏱️ مدة الاستقدام: شهر</div><button class="obtn" onclick="showPage('recruit')">اطلب الآن ←</button></div>
+      <div class="oc"><div class="oflag"><img src="https://flagcdn.com/w160/ug.png" alt="اوغندا"></div><div class="octy">اوغندا</div><div class="oprice">4,160 <small>ريال</small></div><div class="osal">الراتب: 900 ريال/شهر</div><div class="odur">⏱️ مدة الاستقدام: شهر</div><button class="obtn" onclick="showPage('recruit')">اطلب الآن ←</button></div>
+      <div class="oc"><div class="oflag"><img src="https://flagcdn.com/w160/in.png" alt="الهند"></div><div class="octy">الهند</div><div class="oprice">3,326 <small>ريال</small></div><div class="osal">تواصل معنا للراتب</div><div class="obnote">* لا يشمل سعر التأشيرة والتأمين</div><button class="obtn" onclick="showPage('recruit')">اطلب الآن ←</button></div>
+    </div>
+  </section>
+
+  <section style="background:#fff">
+    <div class="stitle center" style="margin-bottom:6px">احصائيات</div>
+    <div class="ssub center" style="margin-bottom:36px">احصائيات نفتخر بها ...</div>
+    <div class="stg">
+      <div class="stc"><div class="sti">🤝</div><div class="stn">8,543</div><div class="stl">عميل راضٍ عن الخدمة</div></div>
+      <div class="stc hi"><div class="sti">✅</div><div class="stn">6,453</div><div class="stl">عقود تمت بنجاح</div></div>
+      <div class="stc"><div class="sti">⏱️</div><div class="stn">8,950</div><div class="stl">طلبات استقدام</div></div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg)">
+    <div class="stitle center" style="margin-bottom:6px">متطلبات الإستقدام</div>
+    <div class="ssub center" style="margin-bottom:36px">هذه هي المتطلبات التي تحتاجها للاستقدام ...</div>
+    <div class="rqg mw">
+      <div class="rqb"><h3>الوثائق المطلوبة لاستقدام العمالة المنزلية</h3>
+        <ul class="rql">
+          <li><div class="rqi">📋</div>تخليص اجراءات الاستقدام</li>
+          <li><div class="rqi">📄</div>اختيار السيرة الذاتية</li>
+          <li><div class="rqi">🪪</div>صورة الهوية الوطنية او الإقامة والرقم المربوط في أبشر</li>
+          <li><div class="rqi">🎧</div>تعاقد الاستقدام عبر مساند وسداد الرسوم</li>
+        </ul>
+      </div>
+      <div class="rqb"><h3>اجراءات الاستقدام</h3>
+        <p class="rqinto">الدخول الى منصة مساند التحقق من تأهيلك للحصول على التأشيرة ادخال البيانات المطلوبة وإثبات القدرة المالية الإقرار بالمعلومات الصحيحة وسداد الرسوم <a href="#">من هنا</a></p>
+        <ul class="rql">
+          <li><div class="rqi">🖥️</div>الدخول الى منصة مساند</li>
+          <li><div class="rqi">📋</div>التحقق من تأهيلك للحصول على التأشيرة</li>
+          <li><div class="rqi">👤</div>ادخال البيانات المطلوبة وإثبات القدرة المالية</li>
+          <li><div class="rqi">✅</div>الإقرار بالمعلومات الصحيحة وسداد الرسوم</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#fff">
+    <div class="stitle center" style="margin-bottom:6px">خدمة العملاء والمبيعات</div>
+    <div class="ssub center" style="margin-bottom:36px">يمكنك التواصل مع طاقمنا المميز بكل سهولة ويسر</div>
+    <div class="csg">
+      <div class="csc"><div class="csav"><img src="https://ui-avatars.com/api/?name=وسمية&background=1e7048&color=fff&size=80" alt=""></div><div class="csn">أ. وسمية</div><div class="csa"><a class="csb cscall" href="tel:+966500210155">📞</a><a class="csb cswa" href="https://wa.me/966500210155">💬</a></div></div>
+      <div class="csc"><div class="csav"><img src="https://ui-avatars.com/api/?name=ياسمين&background=1e7048&color=fff&size=80" alt=""></div><div class="csn">أ. ياسمين</div><div class="csa"><a class="csb cscall" href="tel:+966536133884">📞</a><a class="csb cswa" href="https://wa.me/966536133884">💬</a></div></div>
+      <div class="csc"><div class="csav"><img src="https://ui-avatars.com/api/?name=منار&background=1e7048&color=fff&size=80" alt=""></div><div class="csn">أ. منار</div><div class="csa"><a class="csb cscall" href="tel:+966553722556">📞</a><a class="csb cswa" href="https://wa.me/966553722556">💬</a></div></div>
+      <div class="csc"><div class="csav"><img src="https://ui-avatars.com/api/?name=اسماء&background=1e7048&color=fff&size=80" alt=""></div><div class="csn">أ. اسماء</div><div class="csa"><a class="csb cscall" href="tel:+966500151977">📞</a><a class="csb cswa" href="https://wa.me/966500151977">💬</a></div></div>
+      <div class="csc"><div class="csav"><img src="https://ui-avatars.com/api/?name=لمياء&background=1e7048&color=fff&size=80" alt=""></div><div class="csn">أ. لمياء</div><div class="csa"><a class="csb cscall" href="tel:+966500210155">📞</a><a class="csb cswa" href="https://wa.me/966500210155">💬</a></div></div>
+      <div class="csc"><div class="csav"><img src="https://ui-avatars.com/api/?name=خلود&background=1e7048&color=fff&size=80" alt=""></div><div class="csn">أ. خلود</div><div class="csa"><a class="csb cscall" href="tel:+966536133884">📞</a><a class="csb cswa" href="https://wa.me/966536133884">💬</a></div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT US TEASER -->
+  <section style="background:#fff;padding:64px 36px" id="home-contact">
+    <div style="max-width:1100px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:40px">
+        <div style="font-size:13px;color:var(--g);font-weight:700;margin-bottom:6px">تواصل معنا</div>
+        <h2 style="font-size:30px;font-weight:900;margin-bottom:10px">تواصل معنا</h2>
+        <p style="font-size:13px;color:#888;max-width:540px;margin:0 auto">اطلب عاملتك الآن وسيقوم فريق خدمة العملاء لدينا بالتواصل معك بأسرع وقت</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+        <!-- Info + Map -->
+        <div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:22px">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f5f9f5;border-radius:10px">
+              <div style="width:38px;height:38px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">📍</div>
+              <div><div style="font-size:11px;color:#999;font-weight:600">عنوان مقرنا</div><div style="font-size:13px;font-weight:700">الشيخ جابر الأحمد الصباح، حي المعيزيلة، الرياض 13231</div></div>
+            </div>
+            <div style="display:flex;gap:12px">
+              <a href="tel:+9668003030309" style="flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;background:#f5f9f5;border-radius:10px;text-decoration:none;color:inherit">
+                <div style="width:38px;height:38px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">📞</div>
+                <div><div style="font-size:11px;color:#999;font-weight:600">المبيعات</div><div style="font-size:13px;font-weight:700;color:var(--g)">8003030309</div></div>
+              </a>
+              <a href="https://wa.me/966553722556" style="flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;background:#f5f9f5;border-radius:10px;text-decoration:none;color:inherit">
+                <div style="width:38px;height:38px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">💬</div>
+                <div><div style="font-size:11px;color:#999;font-weight:600">واتساب</div><div style="font-size:13px;font-weight:700;color:#25d366">+966553722556</div></div>
+              </a>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f5f9f5;border-radius:10px">
+              <div style="width:38px;height:38px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">✉️</div>
+              <div><div style="font-size:11px;color:#999;font-weight:600">البريد الإلكتروني</div><div style="font-size:13px;font-weight:700">info@badralm.sa</div></div>
+            </div>
+          </div>
+          <div style="border-radius:14px;overflow:hidden;height:260px;box-shadow:0 4px 20px rgba(0,0,0,.1)">
+            <iframe src="https://maps.google.com/maps?q=24.7136,46.6753&output=embed&z=15" width="100%" height="260" style="border:none" loading="lazy"></iframe>
+          </div>
+        </div>
+        <!-- Form -->
+        <div style="background:#fff;border:1px solid #eee;border-radius:16px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,.06)">
+          <div class="fg2"><div class="fl2">👤 الاسم كامل *</div><input class="fi2" type="text" placeholder="الاسم بالكامل"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div class="fg2"><div class="fl2">📞 رقم الهاتف *</div><input class="fi2" type="tel" placeholder="05xxxxxxxx"></div>
+            <div class="fg2"><div class="fl2">💬 الموضوع *</div><input class="fi2" type="text" value="استفسار"></div>
+          </div>
+          <div class="fg2"><div class="fl2">✏️ اكتب رسالتك *</div><textarea class="fi2" rows="5" placeholder="اكتب رسالتك هنا..." style="resize:vertical"></textarea></div>
+          <button class="bsub">← إرسال</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <div class="prt">
+    <div class="prti">
+      <div class="prl"><span style="font-size:26px">🏛️</span><div class="prl-t">مساند<br><small style="font-weight:400">MUSANED</small></div></div>
+      <div class="prl"><span style="font-size:26px">📊</span><div class="prl-t">أبشر</div></div>
+      <div class="prl"><span style="font-size:26px">⚖️</span><div class="prl-t">وزارة العمل<br><small style="font-weight:400">والتنمية الاجتماعية</small></div></div>
+      <div class="prl"><span style="font-size:26px">🏢</span><div class="prl-t">وزارة الخارجية</div></div>
+      <div class="prl"><span style="font-size:26px">🏛️</span><div class="prl-t">MUSANED</div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="fg4">
+      <div>
+        <div class="fbrand">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="44" height="44"><rect width="60" height="60" rx="10" fill="rgba(255,255,255,.15)"/><rect x="2" y="2" width="56" height="56" rx="9" fill="none" stroke="#c8a84b" stroke-width="2"/><text x="7" y="38" font-family="Arial" font-weight="900" font-size="28" fill="white">BM</text><rect x="7" y="41" width="46" height="3" rx="1.5" fill="#c8a84b"/></svg>
+          <div style="font-size:11px;color:rgba(255,255,255,.9);font-weight:800;line-height:1.4">بدر المنجز<br>للاستقدام</div>
+        </div>
+        <p class="fdesc">أفضل مكتب استقدام العمالة المنزلية بالسعودية بمعايير دولية ومهنية عالية. نسعى لتقديم تجربة استقدام مثالية لعملائنا.</p>
+        <div class="fso"><a href="#">𝕏</a><a href="#">📸</a><a href="#">🎵</a><a href="#">▶️</a><a href="#">💼</a><a href="#">👻</a></div>
+      </div>
+      <div class="fcol"><h4>خدماتنا</h4><ul>
+        <li><a onclick="showPage('recruit')">اختيار العمالة</a></li>
+        <li><a onclick="showPage('arrival')">وصول العمالة</a></li>
+        <li><a onclick="showPage('contract')">تعاقد الاستقدام</a></li>
+        <li><a onclick="showPage('transfer')">نقل الكفالة</a></li>
+        <li><a onclick="showPage('policies')">سياسات الاستقدام</a></li>
+      </ul></div>
+      <div class="fcol"><h4>المزيد</h4><ul>
+        <li><a onclick="showPage('musaned')">مبادرة مساند</a></li>
+        <li><a onclick="showPage('articles')">المقالات</a></li>
+        <li><a href="#">مركز المساعدة</a></li>
+        <li><a onclick="showPage('contact')">تواصل معنا</a></li>
+      </ul>
+      <br>
+      <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.8)">رقم مدير نقل الخدمات:</div>
+      <div style="font-size:13px;font-weight:800;color:#fff;margin-top:3px">+966555653289</div>
+      </div>
+      <div class="fcol"><h4>تواصل معنا</h4>
+        <div class="fci"><span>📍</span><div>الشيخ جابر الأحمد الصباح، حي المعيزيلة، الرياض 13231</div></div>
+        <div class="fci"><span>✉️</span><div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caa3a4aca58aa8abaeb8aba6a7e4b9ab">[email&#160;protected]</a></div></div>
+        <div class="fci"><span>📞</span><div>المبيعات: 8003030309</div></div>
+        <div class="fci"><span>💬</span><div>الشكاوي: 8003030309</div></div>
+        <div class="fci"><span>🏢</span><div>السجل التجاري: 1010595382</div></div>
+        <div class="fci"><span>📋</span><div>وزارة الموارد البشرية: 41012064</div></div>
+        <div class="fbdg"><span>مساند ✓</span><span>أبشر ✓</span><span>MOL ✓</span></div>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>جميع الحقوق محفوظة © 2025 بدر المنجز للاستقدام</p>
+      <div class="fbl"><a href="#">سياسة الخصوصية</a><a href="#">الشروط والأحكام</a></div>
+    </div>
+  </footer>
+</div><!-- /home -->
+
+<!-- ====== RECRUITMENT ====== -->
+<div id="page-recruit" class="page">
+  <div class="phero"><div class="phbg"></div><div class="phov"></div><div class="phbc"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>طلب استقدام</span></div></div>
+  <div class="sbs">
+    <div class="sbt">بحث متقدم</div>
+    <div class="sff">
+      <div class="sfg"><div class="sfl">⏳ العمر</div><select class="sfsel"><option>الكل</option><option>18-25</option><option>26-35</option><option>36-45</option></select></div>
+      <div class="sfg"><div class="sfl">🧳 المهنة</div><select class="sfsel"><option>الكل</option><option>عاملة منزلية</option><option>طباخة</option><option>مربية أطفال</option></select></div>
+      <div class="sfg"><div class="sfl">🕌 الديانة</div><select class="sfsel"><option>الكل</option><option>مسلم/ة</option><option>غير مسلم/ة</option></select></div>
+      <div class="sfg"><div class="sfl">⭐ الخبرة</div><select class="sfsel"><option>الكل</option><option>قادم جديد</option><option>لديه خبرة سابقة</option></select></div>
+      <div class="sfg"><div class="sfl">🏴 الجنسية</div><select class="sfsel"><option>الكل</option><option>كينيا</option><option>اثيوبيا</option><option>الفلبين</option><option>بنجلاديش</option></select></div>
+      <button class="btn-fil">تطبيق</button>
+    </div>
+  </div>
+  <div class="wg">
+    <div class="bc"><div class="bctop"><div class="bcpb"><div class="bcp">900 ريال</div><div class="bcpl">الراتب الشهري</div><div class="bcd">مدة التعاقد: السنوات</div></div><div class="bcna"><div class="bcnm">JANET WARUIRU KAMAU</div><div class="bcrl">عاملة منزلية</div></div><div class="bcav"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt=""></div></div><div class="bcbody"><div class="bcst">البيانات الشخصية</div><div class="bcd2"><div class="bci"><div class="bcil">الجنسية</div><div class="bciv">كينيا</div></div><div class="bci"><div class="bcil">تاريخ الميلاد</div><div class="bciv">2003-08-03</div></div><div class="bci"><div class="bcil">الديانة</div><div class="bciv">غير مسلم/ة</div></div><div class="bci"><div class="bcil">السن</div><div class="bciv">22</div></div><div class="bci"><div class="bcil">الوزن</div><div class="bciv">58</div></div><div class="bci"><div class="bcil">الحالة الاجتماعية</div><div class="bciv">متزوج</div></div></div><div class="bcw">لضمان حقك، لا يتم سداد الرسوم بعد الحجز إلا عند طريق منصة مساند</div><div class="bcac"><button class="bcbtn">واتساب</button><button class="bcbtn">تنزيل السيرة</button><button class="bcbtn pr">حجز السيرة</button></div></div></div>
+    <div class="bc"><div class="bctop"><div class="bcpb"><div class="bcp">900 ريال</div><div class="bcpl">الراتب الشهري</div><div class="bcd">مدة التعاقد: السنوات</div></div><div class="bcna"><div class="bcnm">EZINA MOGOTU MONDA</div><div class="bcrl">عاملة منزلية</div></div><div class="bcav"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt=""></div></div><div class="bcbody"><div class="bcst">البيانات الشخصية</div><div class="bcd2"><div class="bci"><div class="bcil">الجنسية</div><div class="bciv">كينيا</div></div><div class="bci"><div class="bcil">تاريخ الميلاد</div><div class="bciv">2002-08-14</div></div><div class="bci"><div class="bcil">الديانة</div><div class="bciv">غير مسلم/ة</div></div><div class="bci"><div class="bcil">السن</div><div class="bciv">23</div></div><div class="bci"><div class="bcil">الوزن</div><div class="bciv">58</div></div><div class="bci"><div class="bcil">الحالة الاجتماعية</div><div class="bciv">متزوج</div></div></div><div class="bcw">لضمان حقك، لا يتم سداد الرسوم بعد الحجز إلا عند طريق منصة مساند</div><div class="bcac"><button class="bcbtn">واتساب</button><button class="bcbtn">تنزيل السيرة</button><button class="bcbtn pr">حجز السيرة</button></div></div></div>
+    <div class="bc"><div class="bctop"><div class="bcpb"><div class="bcp">900 ريال</div><div class="bcpl">الراتب الشهري</div><div class="bcd">مدة التعاقد: السنوات</div></div><div class="bcna"><div class="bcnm">SANDRA WANJIRU MUCHIRI</div><div class="bcrl">عاملة منزلية</div></div><div class="bcav"><img src="https://randomuser.me/api/portraits/women/75.jpg" alt=""></div></div><div class="bcbody"><div class="bcst">البيانات الشخصية</div><div class="bcd2"><div class="bci"><div class="bcil">الجنسية</div><div class="bciv">كينيا</div></div><div class="bci"><div class="bcil">تاريخ الميلاد</div><div class="bciv">2003-07-12</div></div><div class="bci"><div class="bcil">الديانة</div><div class="bciv">غير مسلم/ة</div></div><div class="bci"><div class="bcil">السن</div><div class="bciv">22</div></div><div class="bci"><div class="bcil">الوزن</div><div class="bciv">58</div></div><div class="bci"><div class="bcil">الحالة الاجتماعية</div><div class="bciv">متزوج</div></div></div><div class="bcw">لضمان حقك، لا يتم سداد الرسوم بعد الحجز إلا عند طريق منصة مساند</div><div class="bcac"><button class="bcbtn">واتساب</button><button class="bcbtn">تنزيل السيرة</button><button class="bcbtn pr">حجز السيرة</button></div></div></div>
+    <div class="bc"><div class="bctop"><div class="bcpb"><div class="bcp">900 ريال</div><div class="bcpl">الراتب الشهري</div><div class="bcd">مدة التعاقد: السنوات</div></div><div class="bcna"><div class="bcnm">MWANAMISI CHIRINDO MUNGA</div><div class="bcrl">عاملة منزلية</div></div><div class="bcav"><img src="https://randomuser.me/api/portraits/women/50.jpg" alt=""></div></div><div class="bcbody"><div class="bcst">البيانات الشخصية</div><div class="bcd2"><div class="bci"><div class="bcil">الجنسية</div><div class="bciv">كينيا</div></div><div class="bci"><div class="bcil">تاريخ الميلاد</div><div class="bciv">2004-07-08</div></div><div class="bci"><div class="bcil">الديانة</div><div class="bciv">مسلم/ة</div></div><div class="bci"><div class="bcil">السن</div><div class="bciv">21</div></div><div class="bci"><div class="bcil">الوزن</div><div class="bciv">0</div></div><div class="bci"><div class="bcil">الحالة الاجتماعية</div><div class="bciv">متزوج</div></div></div><div class="bcw">لضمان حقك، لا يتم سداد الرسوم بعد الحجز إلا عند طريق منصة مساند</div><div class="bcac"><button class="bcbtn">واتساب</button><button class="bcbtn">تنزيل السيرة</button><button class="bcbtn pr">حجز السيرة</button></div></div></div>
+    <div class="bc"><div class="bctop"><div class="bcpb"><div class="bcp">900 ريال</div><div class="bcpl">الراتب الشهري</div><div class="bcd">مدة التعاقد: السنوات</div></div><div class="bcna"><div class="bcnm">VISITINE NYAMAUCHO KEBIRA</div><div class="bcrl">عاملة منزلية</div></div><div class="bcav"><img src="https://randomuser.me/api/portraits/women/62.jpg" alt=""></div></div><div class="bcbody"><div class="bcst">البيانات الشخصية</div><div class="bcd2"><div class="bci"><div class="bcil">الجنسية</div><div class="bciv">كينيا</div></div><div class="bci"><div class="bcil">تاريخ الميلاد</div><div class="bciv">1993-04-24</div></div><div class="bci"><div class="bcil">الديانة</div><div class="bciv">غير مسلم/ة</div></div><div class="bci"><div class="bcil">السن</div><div class="bciv">32</div></div><div class="bci"><div class="bcil">الحالة الاجتماعية</div><div class="bciv">متزوج</div></div><div class="bci"><div class="bcil">عدد الأطفال</div><div class="bciv">2</div></div></div><div class="bcw">لضمان حقك، لا يتم سداد الرسوم بعد الحجز إلا عند طريق منصة مساند</div><div class="bcac"><button class="bcbtn">واتساب</button><button class="bcbtn">تنزيل السيرة</button><button class="bcbtn pr">حجز السيرة</button></div></div></div>
+    <div class="bc"><div class="bctop"><div class="bcpb"><div class="bcp">900 ريال</div><div class="bcpl">الراتب الشهري</div><div class="bcd">مدة التعاقد: السنوات</div></div><div class="bcna"><div class="bcnm">VIVIAN KEMUMA MAYOGA</div><div class="bcrl">عاملة منزلية</div></div><div class="bcav"><img src="https://randomuser.me/api/portraits/women/33.jpg" alt=""></div></div><div class="bcbody"><div class="bcst">البيانات الشخصية</div><div class="bcd2"><div class="bci"><div class="bcil">الجنسية</div><div class="bciv">كينيا</div></div><div class="bci"><div class="bcil">تاريخ الميلاد</div><div class="bciv">2004-01-25</div></div><div class="bci"><div class="bcil">الديانة</div><div class="bciv">غير مسلم/ة</div></div><div class="bci"><div class="bcil">السن</div><div class="bciv">22</div></div><div class="bci"><div class="bcil">الوزن</div><div class="bciv">58</div></div><div class="bci"><div class="bcil">الحالة الاجتماعية</div><div class="bciv">متزوج</div></div></div><div class="bcw">لضمان حقك، لا يتم سداد الرسوم بعد الحجز إلا عند طريق منصة مساند</div><div class="bcac"><button class="bcbtn">واتساب</button><button class="bcbtn">تنزيل السيرة</button><button class="bcbtn pr">حجز السيرة</button></div></div></div>
+  </div>
+  <div class="lmw"><button class="lmbtn">تحميل المزيد</button></div>
+</div>
+
+<!-- ====== TRANSFER ====== -->
+<div id="page-transfer" class="page">
+  <div class="phero"><div class="phbg"></div><div class="phov"></div><div class="phbc"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>نقل الخدمات</span></div></div>
+  <div class="sbs"><div class="sbt">بحث متقدم</div><div class="sff"><div class="sfg"><div class="sfl">⏳ العمر</div><select class="sfsel"><option>الكل</option></select></div><div class="sfg"><div class="sfl">🧳 المهنة</div><select class="sfsel"><option>الكل</option></select></div><div class="sfg"><div class="sfl">🏴 الجنسية</div><select class="sfsel"><option>الكل</option><option>سيريلانكا</option><option>بنجلاديش</option><option>الفلبين</option></select></div><button class="btn-fil">تطبيق</button></div></div>
+  <div class="wg">
+    <div class="tc"><div class="tcto"><div class="tcav">MR</div><div class="tcna"><div class="tcnm">MUHAMMATHU RASOOL JARINA</div><div class="tcid">رقم العامل: 8017</div></div></div><div class="tcb"><div class="tcr"><div class="tcrl">الجنسية</div><div class="tcrv">سيريلانكا</div></div><div class="tcr"><div class="tcrl">الديانة</div><div class="tcrv">مسلم/ة</div></div><div class="tcr"><div class="tcrl">العمر</div><div class="tcrv">28</div></div><div class="tcr"><div class="tcrl">رقم الجواز</div><div class="tcrv">P0363185</div></div></div><div class="tca"><button class="tcbtn se">لا توجد سيرة</button><button class="tcbtn pr">احجز الآن</button></div></div>
+    <div class="tc"><div class="tcto"><div class="tcav">NB</div><div class="tcna"><div class="tcnm">NAZMA BEGUM</div><div class="tcid">رقم العامل: 8021</div></div></div><div class="tcb"><div class="tcr"><div class="tcrl">الجنسية</div><div class="tcrv">بنجلاديش</div></div><div class="tcr"><div class="tcrl">الديانة</div><div class="tcrv">مسلم/ة</div></div><div class="tcr"><div class="tcrl">العمر</div><div class="tcrv">41</div></div><div class="tcr"><div class="tcrl">رقم الجواز</div><div class="tcrv">EK0607958</div></div></div><div class="tca"><button class="tcbtn se">لا توجد سيرة</button><button class="tcbtn pr">احجز الآن</button></div></div>
+    <div class="tc"><div class="tcto"><div class="tcav">RL</div><div class="tcna"><div class="tcnm">ROSALYN LANGGIDO EMPIEL</div><div class="tcid">رقم العامل: 8023</div></div></div><div class="tcb"><div class="tcr"><div class="tcrl">الجنسية</div><div class="tcrv">الفلبين</div></div><div class="tcr"><div class="tcrl">الديانة</div><div class="tcrv">غير مسلم/ة</div></div><div class="tcr"><div class="tcrl">العمر</div><div class="tcrv">35</div></div><div class="tcr"><div class="tcrl">رقم الجواز</div><div class="tcrv">P7333492A</div></div></div><div class="tca"><button class="tcbtn se">لا توجد سيرة</button><button class="tcbtn pr">احجز الآن</button></div></div>
+    <div class="tc"><div class="tcto"><div class="tcav">KS</div><div class="tcna"><div class="tcnm">K SINGAPPULI NILUKA DAMAYANTHI</div><div class="tcid">رقم العامل: 7951</div></div></div><div class="tcb"><div class="tcr"><div class="tcrl">الجنسية</div><div class="tcrv">سيريلانكا</div></div><div class="tcr"><div class="tcrl">الديانة</div><div class="tcrv">غير مسلم/ة</div></div><div class="tcr"><div class="tcrl">العمر</div><div class="tcrv">33</div></div><div class="tcr"><div class="tcrl">رقم الجواز</div><div class="tcrv">N4521821</div></div></div><div class="tca"><button class="tcbtn se">لا توجد سيرة</button><button class="tcbtn pr">احجز الآن</button></div></div>
+    <div class="tc"><div class="tcto"><div class="tcav">LR</div><div class="tcna"><div class="tcnm">LOMI REGASA DADI</div><div class="tcid">رقم العامل: 7923</div></div></div><div class="tcb"><div class="tcr"><div class="tcrl">الجنسية</div><div class="tcrv">اثيوبيا</div></div><div class="tcr"><div class="tcrl">الديانة</div><div class="tcrv">مسلم/ة</div></div><div class="tcr"><div class="tcrl">العمر</div><div class="tcrv">29</div></div><div class="tcr"><div class="tcrl">رقم الجواز</div><div class="tcrv">EK0223311</div></div></div><div class="tca"><button class="tcbtn se">لا توجد سيرة</button><button class="tcbtn pr">احجز الآن</button></div></div>
+    <div class="tc"><div class="tcto"><div class="tcav">JA</div><div class="tcna"><div class="tcnm">JESMIN AKTER</div><div class="tcid">رقم العامل: 7989</div></div></div><div class="tcb"><div class="tcr"><div class="tcrl">الجنسية</div><div class="tcrv">بنجلاديش</div></div><div class="tcr"><div class="tcrl">الديانة</div><div class="tcrv">مسلم/ة</div></div><div class="tcr"><div class="tcrl">العمر</div><div class="tcrv">38</div></div><div class="tcr"><div class="tcrl">رقم الجواز</div><div class="tcrv">BK0112233</div></div></div><div class="tca"><button class="tcbtn se">لا توجد سيرة</button><button class="tcbtn pr">احجز الآن</button></div></div>
+  </div>
+  <div class="lmw"><button class="lmbtn">تحميل المزيد</button></div>
+</div>
+
+<!-- ====== RENTAL ====== -->
+<div id="page-rental" class="page">
+  <div class="phero"><div class="phbg"></div><div class="phov"></div><div class="phbc"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>تأجير العمالة</span></div></div>
+  <div class="sbs"><div class="sbt">بحث متقدم</div><div class="sff"><div class="sfg"><div class="sfl">⏳ العمر</div><select class="sfsel"><option>الكل</option></select></div><div class="sfg"><div class="sfl">🧳 المهنة</div><select class="sfsel"><option>الكل</option></select></div><div class="sfg"><div class="sfl">🏴 الجنسية</div><select class="sfsel"><option>الكل</option><option>اوغندا</option><option>كينيا</option></select></div><button class="btn-fil">تطبيق</button></div></div>
+  <div class="wg">
+    <div class="tc"><div class="tcto"><div class="tcav" style="font-size:11px;text-align:center;padding:2px">👤</div><div class="tcna"><div class="tcnm">NAKAZZI JOYCE</div><div class="tcid">رقم العامل: 18251</div></div></div><div class="tcb"><div class="tcr"><div class="tcrl">الجنسية</div><div class="tcrv">اوغندا</div></div><div class="tcr"><div class="tcrl">الديانة</div><div class="tcrv">غير مسلم/ة</div></div><div class="tcr"><div class="tcrl">العمر</div><div class="tcrv">--</div></div><div class="tcr"><div class="tcrl">رقم الجواز</div><div class="tcrv">A00972504</div></div></div><div class="tca"><button class="tcbtn se">تنزيل السيرة</button><button class="tcbtn pr">تواصل</button></div></div>
+    <div class="tc"><div class="tcto"><div class="tcav" style="font-size:11px">👤</div><div class="tcna"><div class="tcnm">NABUTUWA ANZELENA</div><div class="tcid">رقم العامل: 18252</div></div></div><div class="tcb"><div class="tcr"><div class="tcrl">الجنسية</div><div class="tcrv">اوغندا</div></div><div class="tcr"><div class="tcrl">الديانة</div><div class="tcrv">غير مسلم/ة</div></div><div class="tcr"><div class="tcrl">العمر</div><div class="tcrv">--</div></div><div class="tcr"><div class="tcrl">رقم الجواز</div><div class="tcrv">A00391506</div></div></div><div class="tca"><button class="tcbtn se">تنزيل السيرة</button><button class="tcbtn pr">تواصل</button></div></div>
+    <div class="tc"><div class="tcto"><div class="tcav" style="font-size:11px">👤</div><div class="tcna"><div class="tcnm">KALENDA FELISTER</div><div class="tcid">رقم العامل: 18253</div></div></div><div class="tcb"><div class="tcr"><div class="tcrl">الجنسية</div><div class="tcrv">اوغندا</div></div><div class="tcr"><div class="tcrl">الديانة</div><div class="tcrv">غير مسلم/ة</div></div><div class="tcr"><div class="tcrl">العمر</div><div class="tcrv">--</div></div><div class="tcr"><div class="tcrl">رقم الجواز</div><div class="tcrv">B00783643</div></div></div><div class="tca"><button class="tcbtn se">تنزيل السيرة</button><button class="tcbtn pr">تواصل</button></div></div>
+  </div>
+  <div class="lmw"><button class="lmbtn">تحميل المزيد</button></div>
+</div>
+
+<!-- ====== CONTRACT ====== -->
+<div id="page-contract" class="page">
+  <div class="ch"><div class="chbg"></div><div class="cht"><h1>تعاقد الإستقدام</h1><p>مكتب بدر المنجز للاستقدام يُقدم لك خدمات العمالة المنزلية بأفضل جودة، مع مراعاة القوانين والتشريعات المحلية والدولية. فقد تعاون المكتب مع عدد كبير من أمهر الخبراء بمكاتب الاستقدام الإقليمية والعالمية. كما يلتزم المكتب بالقوانين والتشريعات التي نصت عليها وزارة العمل، ووزارة الموارد البشرية والتنمية الاجتماعية، وذلك لتغطية احتياجات المواطن السعودي، وللتأكد من أداء العامل المنزلي لواجباته بأفضل صورة. وخدمات المكتب تُغطي جميع المدن بالمملكة العربية السعودية.</p></div></div>
+  <div class="cdet">
+    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=700&q=80" alt="">
+    <div><div class="cib"><p>يتم الاتفاق على الراتب بالتنسيق مع صاحب العمل والعمالة المنزلية. كما يتم توضيح كافة الشروط والأحكام حفاظاً على حقوق وواجبات كل الأطراف. والمكتب يقوم بصورة دورية بمتابعة الطلب بالتأكد من التزام الجميع بالعقد المبرم. كل ما عليك فعله فقط اختيار العمالة المنزلية الملائمة لك.</p><a class="bstart" onclick="showPage('recruit')">← أبدا الاستقدام</a></div></div>
+  </div>
+  <section style="background:var(--bg)">
+    <div class="hxtitle">عمليات الاستقدام</div>
+    <div class="hxrow">
+      <div class="hxs"><div class="hxsh"><div class="hxn">1</div><span style="font-size:26px">📋</span></div><div class="hxt">تخليص اجراءات الاستقدام</div><div class="hxd">يتم المساعدة في تخليص الإجراءات الخاصة بالعامل</div></div>
+      <div style="border-top:2px dashed #ccc;flex:1;max-width:28px;margin-top:48px"></div>
+      <div class="hxs"><div class="hxsh"><div class="hxn">2</div><span style="font-size:26px">📄</span></div><div class="hxt">السيرة الذاتية</div><div class="hxd">اختر العامل الذي تريده بناءً على السيرة الذاتية</div></div>
+      <div style="border-top:2px dashed #ccc;flex:1;max-width:28px;margin-top:48px"></div>
+      <div class="hxs"><div class="hxsh"><div class="hxn">3</div><span style="font-size:26px">💳</span></div><div class="hxt">رسوم الإستقدام</div><div class="hxd">يتم دفع رسوم الاستقدام باستخدام احدى بوابات الدفع</div></div>
+      <div style="border-top:2px dashed #ccc;flex:1;max-width:28px;margin-top:48px"></div>
+      <div class="hxs"><div class="hxsh"><div class="hxn">4</div><span style="font-size:26px">✈️</span></div><div class="hxt">وصول العمالة</div><div class="hxd">تصل العمالة المختارة الى المطار</div></div>
+    </div>
+    <div class="hxrow" style="margin-top:16px">
+      <div class="hxs"><div class="hxsh"><div class="hxn">5</div><span style="font-size:26px">🏠</span></div><div class="hxt">استلام العمالة</div><div class="hxd">يتم استلام العمالة الخاصة بك في مكتب بدر المنجز</div></div>
+      <div style="border-top:2px dashed #ccc;flex:1;max-width:28px;margin-top:48px"></div>
+      <div class="hxs"><div class="hxsh"><div class="hxn">6</div><span style="font-size:26px">🛡️</span></div><div class="hxt">ضمان 3 شهور</div><div class="hxd">نضمن لك العمالة لمدة 3 شهور</div></div>
+    </div>
+  </section>
+  <section style="background:#fff"><div class="stitle center" style="margin-bottom:32px">احصائيات</div><div class="stg"><div class="stc"><div class="sti">🤝</div><div class="stn">8,543</div><div class="stl">عميل راضٍ عن الخدمة</div></div><div class="stc hi"><div class="sti">✅</div><div class="stn">6,453</div><div class="stl">عقود تمت بنجاح</div></div><div class="stc"><div class="sti">⏱️</div><div class="stn">8,950</div><div class="stl">طلبات استقدام</div></div></div></section>
+  <div class="prt"><div class="prti"><div class="prl"><span style="font-size:24px">🏛️</span><div class="prl-t">مساند MUSANED</div></div><div class="prl"><span style="font-size:24px">📊</span><div class="prl-t">أبشر</div></div><div class="prl"><span style="font-size:24px">⚖️</span><div class="prl-t">وزارة العمل</div></div><div class="prl"><span style="font-size:24px">🏢</span><div class="prl-t">وزارة الخارجية</div></div></div></div>
+</div>
+
+<!-- ====== VERIFY ====== -->
+<div id="page-verify" class="page">
+  <div class="vwrap"><div class="vc"><div class="vi">💻📱</div><div class="vt">كود التفعيل</div><div class="vs">يرجاء كتابة كود التفعيل المرسل الى الرقم</div><div class="vd">سيتم إرسال كود مكون من 4 أرقام</div><div class="otpi"><input class="otpf fl" type="text" maxlength="1" value="1"><input class="otpf fl" type="text" maxlength="1" value="2"><input class="otpf fl" type="text" maxlength="1" value="3"><input class="otpf" type="text" maxlength="1" placeholder="•"></div><button class="bvfy" onclick="showPage('home')">تأكيد</button><div style="font-size:12px;color:#666">لم يصلني كود التفعيل <span class="rsl">إعادة ارسال</span></div></div></div>
+</div>
+
+<!-- ====== REGISTER ====== -->
+<div id="page-register" class="page">
+  <div class="rwrap"><div class="rc">
+    <div class="rsteps"><div class="rsd done">✓</div><div class="rsl2 done"></div><div class="rsd act">2</div><div class="rsl2"></div><div class="rsd">3</div><div class="rsl2"></div><div class="rsd">4</div></div>
+    <div class="stitle center" style="font-size:22px;margin-bottom:24px">إنشاء حساب جديد</div>
+    <div class="fg2"><div class="fl2">👤 الاسم كامل *</div><input class="fi2" type="text" placeholder="ادخل اسمك بالكامل"></div>
+    <div class="fg2"><div class="fl2">📞 رقم الهاتف *</div><input class="fi2" type="tel" placeholder="966/05••••••••"></div>
+    <div class="fr2">
+      <div class="fg2"><div class="fl2">🔑 تأكيد الرقم السري *</div><input class="fi2" type="password" placeholder="••••"></div>
+      <div class="fg2"><div class="fl2">🔑 الرقم السري *</div><input class="fi2" type="password" placeholder="Password"></div>
+    </div>
+    <button class="bsub" onclick="showPage('verify')">إرسال</button>
+    <div class="fft">بالفعل لديك حساب؟ <a onclick="document.getElementById('mo').classList.add('open')">تسجيل الدخول</a></div>
+  </div></div>
+</div>
+
+<!-- ====== LOGIN MODAL ====== -->
+<div class="mov" id="mo" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="mo">
+    <button class="moc" onclick="document.getElementById('mo').classList.remove('open')">✕</button>
+    <div class="moh"><div style="font-size:52px;margin-bottom:7px">🚪</div><div style="color:#fff;font-size:17px;font-weight:800">تسجيل الدخول</div></div>
+    <div class="mob">
+      <div class="fg2"><div class="fl2">📞 رقم الهاتف</div><input class="fi2" type="tel" placeholder="ادخل رقم الهاتف"></div>
+      <div class="fg2"><div class="fl2">🔑 الرقم السري</div><input class="fi2" type="password" placeholder="ادخل الرقم السري"></div>
+      <div class="mfrl"><a class="fgt" href="#">نسيت كلمة المرور؟</a><label class="rem"><input type="checkbox"> تذكرني</label></div>
+      <button class="bsub" onclick="document.getElementById('mo').classList.remove('open');showPage('verify')">تسجيل الدخول</button>
+      <div class="mft">ليس لديك حساب؟ <a onclick="document.getElementById('mo').classList.remove('open');showPage('register')">انشاء حساب</a></div>
+    </div>
+  </div>
+</div>
+
+<a class="cb" href="tel:+9668003030309" title="اتصل بنا">📞</a>
+<a class="cb cb2" href="https://wa.me/966553722556" title="واتساب">💬</a>
+
+<!-- ====== ARRIVAL PAGE ====== -->
+<div id="page-arrival" class="page">
+  <div style="position:relative;min-height:260px;background:linear-gradient(135deg,#1b7a50,#2db878);display:flex;align-items:center;justify-content:center;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=80') center/cover;opacity:.22"></div>
+    <div style="position:relative;z-index:2;color:#fff;padding:50px 60px;text-align:center">
+      <h1 style="font-size:30px;font-weight:900;margin-bottom:14px">وصول العمالة</h1>
+      <p style="font-size:14px;line-height:1.9;max-width:700px;margin:0 auto">يحرص فريق عمل مكتب بدر المنجز للاستقدام على توفير السرعة والجودة في الأداء، ويقوم بالإشراف على وصول العمالة المدربة واستقبالها، وذلك من بداية طلب الاستشارة وحتى استلام وثائق الاستقدام وبدء العمل بشكل كامل</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;padding:52px 36px;max-width:1060px;margin:0 auto;align-items:center">
+    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&q=80" alt="" style="width:100%;height:300px;object-fit:cover;border-radius:16px">
+    <div style="background:#f9f9e8;border-radius:13px;padding:26px 22px">
+      <h2 style="font-size:22px;font-weight:900;color:var(--g);margin-bottom:14px">وصول العمالة</h2>
+      <p style="font-size:13px;line-height:1.9;color:var(--tm);margin-bottom:10px">يحرص فريق عمل مكتب بدر المنجز للاستقدام على الإشراف على وصول العمالة المدربة واستقبالها، وذلك بداية من طلب الاستشارة وحتى استلام وثائق الاستقدام وبدء العمل بشكل كامل</p>
+      <p style="font-size:13px;font-weight:700;color:var(--g)">✅ يوفر بدر المنجز ضمان الاستبدال في حال التغيب أو رفض العمل</p>
+    </div>
+  </div>
+  <section style="background:#f5f8f5;padding:50px 36px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;max-width:1060px;margin:0 auto">
+      <div style="background:#fff;border-radius:13px;padding:26px 22px;box-shadow:0 4px 20px rgba(0,0,0,.06)">
+        <h2 style="font-size:20px;font-weight:900;color:var(--g);margin-bottom:14px">خدمة العملاء</h2>
+        <p style="font-size:13px;line-height:1.9;color:var(--tm)">دائما ما نتبنى أحدث الأساليب والتقنيات للتعامل مع العملاء وضمان جودة عالية في الخدمات المقدمة في مكتب بدر المنجز للاستقدام كما أننا نوفر جميع الأدوات لدراسة السوق لتطوير وتوفير خدمات ذات جودة عالية لاستقدام العمالة المنزلية قبل وبعد وصول العمالة المنزلية للعملاء، نلتزم بشكل تام لخدمة مختلف الاحتياجات بمصداقية عالية وشفافية مطلقة حيث أننا نطمح لتجاوز توقعات عملائنا وبناء علاقة طويلة المدى مع كافة العملاء لمعرفة كافة احتياجاتهم ومتطلباتهم.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=700&q=80" alt="" style="width:100%;height:320px;object-fit:cover;border-radius:16px">
+    </div>
+  </section>
+  <div class="prt"><div class="prti"><div class="prl"><span style="font-size:24px">🏛️</span><div class="prl-t">مساند MUSANED</div></div><div class="prl"><span style="font-size:24px">📊</span><div class="prl-t">أبشر</div></div><div class="prl"><span style="font-size:24px">⚖️</span><div class="prl-t">وزارة العمل</div></div><div class="prl"><span style="font-size:24px">🏢</span><div class="prl-t">وزارة الخارجية</div></div></div></div>
+</div>
+
+<!-- ====== POLICIES PAGE ====== -->
+<div id="page-policies" class="page">
+  <div style="position:relative;min-height:280px;background:linear-gradient(135deg,#1b7a50,#2db878);display:flex;align-items:center;justify-content:center;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80') center/cover;opacity:.22"></div>
+    <div style="position:relative;z-index:2;color:#fff;padding:50px 60px;text-align:center">
+      <h1 style="font-size:30px;font-weight:900;margin-bottom:14px">سياسات وقوانين الاستقدام داخل المملكة</h1>
+      <p style="font-size:14px;line-height:1.9;max-width:700px;margin:0 auto 24px">الدستور والقانون السعودي وضع أهم المعايير والمفاهيم الخاصة بالعمالة المنزلية، التي تضمن حقوق وواجبات كلاً من العامل وصاحب العمل، وإليك أهم سياسات وقوانين الاستقدام داخل المملكة:</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="#" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.5);color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px">📄 حقوق وواجبات صاحب العمل</a>
+        <a href="#" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.5);color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px">📄 حقوق وواجبات العمالة المنزلية</a>
+      </div>
+    </div>
+  </div>
+  <div class="phbc" style="position:relative;background:#fff;border-bottom:1px solid #eee"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span style="color:var(--g)">سياسات الاستقدام</span></div>
+  <!-- Contact Form -->
+  <section style="background:#fff;padding:52px 36px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;max-width:1100px;margin:0 auto;align-items:start">
+      <div>
+        <h2 style="font-size:28px;font-weight:900;margin-bottom:8px">تواصل معنا</h2>
+        <p style="font-size:13px;color:#888;margin-bottom:28px">اطلب عاملتك الآن وسيقوم فريق خدمة العملاء لدينا بالتواصل معك بأسرع وقت</p>
+        <div style="background:#f9faf9;border-radius:14px;overflow:hidden;height:380px">
+          <iframe src="https://maps.google.com/maps?q=رواफد+نجد+للاستقدام+الرياض&output=embed&z=15" width="100%" height="380" style="border:none" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #eee;border-radius:16px;padding:30px">
+        <div class="fg2"><div class="fl2">👤 الاسم كامل *</div><input class="fi2" type="text" placeholder="الاسم بالكامل"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="fg2"><div class="fl2">📞 رقم الهاتف *</div><input class="fi2" type="tel" placeholder="05xxxxxxxx"></div>
+          <div class="fg2"><div class="fl2">💬 الموضوع *</div><input class="fi2" type="text" value="استفسار"></div>
+        </div>
+        <div class="fg2"><div class="fl2">✏️ اكتب رسالتك *</div><textarea class="fi2" rows="5" placeholder="اكتب رسالتك هنا..." style="resize:vertical"></textarea></div>
+        <button class="bsub">← إرسال</button>
+      </div>
+    </div>
+  </section>
+  <div class="prt"><div class="prti"><div class="prl"><span style="font-size:24px">🏛️</span><div class="prl-t">مساند</div></div><div class="prl"><span style="font-size:24px">📊</span><div class="prl-t">أبشر</div></div><div class="prl"><span style="font-size:24px">⚖️</span><div class="prl-t">وزارة العمل</div></div><div class="prl"><span style="font-size:24px">🏢</span><div class="prl-t">وزارة الخارجية</div></div></div></div>
+</div>
+
+<!-- ====== MUSANED PAGE ====== -->
+<div id="page-musaned" class="page">
+  <div class="phero"><div class="phbg"></div><div class="phov"></div><div class="phbc"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>مساند</span></div></div>
+  <!-- Hero info -->
+  <section style="background:#fff;padding:52px 36px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1060px;margin:0 auto">
+      <div style="background:linear-gradient(135deg,#f8f0e8,#faf5ee);border-radius:20px;padding:36px;position:relative;overflow:hidden">
+        <div style="font-size:42px;font-weight:900;color:#0066cc;margin-bottom:4px">مساند</div>
+        <div style="font-size:16px;color:#0066cc;font-weight:700;margin-bottom:20px">MUSANED</div>
+        <h2 style="font-size:20px;font-weight:900;margin-bottom:12px">تجربة الاستقدام اسهل وافضل</h2>
+        <p style="font-size:13px;line-height:1.9;color:var(--tm)">منصة مساند أحد مبادرات وزارة الموارد البشرية والتنمية الاجتماعية، وهي منصة إلكترونية شاملة لتجربة استقدام العمالة المنزلية بشكل متكامل. تهدف إلى تسهيل إجراءات استقدام العمالة المنزلية وزيادة مستوى حفظ حقوق جميع الأطراف عن طريق تعريف أصحاب العمل والعمالة المنزلية بحقوقهم وواجباتهم.</p>
+      </div>
+      <div style="background:#f0f5f0;border-radius:20px;height:340px;display:flex;align-items:center;justify-content:center;font-size:80px">🗺️</div>
+    </div>
+  </section>
+  <!-- Video section -->
+  <section style="background:#f5f8f5;padding:52px 36px;text-align:center">
+    <div style="font-size:14px;color:var(--g);font-weight:700;margin-bottom:6px">ماذا نقدم</div>
+    <h2 style="font-size:28px;font-weight:900;margin-bottom:28px">خدمات مساند</h2>
+    <div style="max-width:900px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.15)">
+      <iframe width="100%" height="480" src="https://www.youtube.com/embed/wlLjqeDDi2Y" title="مساند برنامج العمالة المنزلية" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="display:block"></iframe>
+    </div>
+  </section>
+  <!-- Services cards -->
+  <section style="background:#fff;padding:36px 36px 52px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1060px;margin:0 auto 40px">
+      <div style="background:#f8f8f8;border-radius:14px;padding:28px 20px;text-align:center"><div style="font-size:38px;margin-bottom:12px">✅</div><h3 style="font-size:16px;font-weight:800;margin-bottom:8px">التوثيق الالكتروني</h3><p style="font-size:12px;color:#777;line-height:1.7">بكل سهولة يمكنك التعاقد مع اكثر من 1400 مكتب استقدام في جميع انحاء المملكة</p></div>
+      <div style="background:#f8f8f8;border-radius:14px;padding:28px 20px;text-align:center"><div style="font-size:38px;margin-bottom:12px">🏢</div><h3 style="font-size:16px;font-weight:800;margin-bottom:8px">إدارة المكاتب</h3><p style="font-size:12px;color:#777;line-height:1.7">بكل سهولة يمكنك التعاقد مع اكثر من 1400 مكتب استقدام في جميع انحاء المملكة</p></div>
+      <div style="background:#f8f8f8;border-radius:14px;padding:28px 20px;text-align:center"><div style="font-size:38px;margin-bottom:12px">🔄</div><h3 style="font-size:16px;font-weight:800;margin-bottom:8px">خدمات التأجير</h3><p style="font-size:12px;color:#777;line-height:1.7">بكل سهولة يمكنك التعاقد مع اكثر من 1400 مكتب استقدام في جميع انحاء المملكة</p></div>
+    </div>
+    <!-- Steps -->
+    <div style="max-width:1060px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:32px"><div style="font-size:14px;color:var(--g);font-weight:700;margin-bottom:4px">خطوات</div><h2 style="font-size:26px;font-weight:900">الاستقدام مع مساند</h2></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px">
+        <div style="background:#f8f8f8;border-radius:14px;padding:22px 16px;text-align:center"><div style="font-size:34px;margin-bottom:10px">👆</div><h4 style="font-size:13px;font-weight:800;margin-bottom:7px">تحديد نوع الاستقدام</h4><p style="font-size:11px;color:#777;line-height:1.6">اختيار نوع الاستقدام حسب التفضيل، إما استقدام عامل بمواصفات محددة أو استقدام عامل محدد مسبقاً بالاسم</p></div>
+        <div style="background:#f8f8f8;border-radius:14px;padding:22px 16px;text-align:center"><div style="font-size:34px;margin-bottom:10px">🏢</div><h4 style="font-size:13px;font-weight:800;margin-bottom:7px">اختيار مقدم الخدمه</h4><p style="font-size:11px;color:#777;line-height:1.6">الاختيار من ضمن +1400 مقدم خدمة من جميع أنحاء المملكة، يمكنك الاختيار بناء على تقييم المكتب، نسبة قبول طلبات الاستقدام، مدينة الوصول</p></div>
+        <div style="background:#f8f8f8;border-radius:14px;padding:22px 16px;text-align:center"><div style="font-size:34px;margin-bottom:10px">📋</div><h4 style="font-size:13px;font-weight:800;margin-bottom:7px">استلام عروض الاستقدام</h4><p style="font-size:11px;color:#777;line-height:1.6">استلام عروض طلبات الاستقدام من مقدمي الخدمة، تتضمن الراتب المستحق للعامل مع سير ذاتية ليتم ترتيبها حسب الافضلية</p></div>
+        <div style="background:#f8f8f8;border-radius:14px;padding:22px 16px;text-align:center"><div style="font-size:34px;margin-bottom:10px">💳</div><h4 style="font-size:13px;font-weight:800;margin-bottom:7px">دفع رسوم الاستقدام</h4><p style="font-size:11px;color:#777;line-height:1.6">ادفع بأمان من خلال مساند بعد إنشاء العقد، يمكنك الاختيار ضمن عدة طرق للدفع: فيزا، ماستركارد، أو من خلال بطاقة مدى البنكية</p></div>
+      </div>
+      <!-- Payment methods -->
+      <div style="text-align:center;padding:36px 0">
+        <div style="font-size:14px;color:var(--g);font-weight:700;margin-bottom:4px">رسوم</div>
+        <h2 style="font-size:26px;font-weight:900;margin-bottom:10px">الاستقدام مع مساند</h2>
+        <p style="font-size:13px;color:#777;max-width:600px;margin:0 auto 24px">سداد رسوم تاشيرة العمالة المنزلية الخاصة بك عبر الخدمات الحكومية في البنك أو عن طريق قنوات الدفع عبر الإنترنت حيث يوفر مساند عدة طرق دفع آمنة، يمكن للمستخدم اختيار ما هو مناسب من بين مدى أو فيزا أو ماستركارد</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <div style="background:#fff;border:1px solid #eee;border-radius:10px;padding:12px 24px;font-weight:800;font-size:16px;color:#00579f">VISA</div>
+          <div style="background:#fff;border:1px solid #eee;border-radius:10px;padding:12px 24px;font-weight:800;font-size:14px">🔴 Mastercard</div>
+          <div style="background:#fff;border:1px solid #eee;border-radius:10px;padding:12px 24px;font-weight:800;font-size:14px;color:#00a651">mada مدى</div>
+        </div>
+      </div>
+    </div>
+    <!-- App section -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;max-width:1060px;margin:0 auto;background:#f8f8ec;border-radius:20px;padding:36px">
+      <div>
+        <div style="font-size:26px;font-weight:900;color:#0066cc;margin-bottom:4px">مساند | MUSANED</div>
+        <h3 style="font-size:18px;font-weight:900;margin-bottom:12px">تطبيق مساند للجوال لكلى النظامين الاندرويد والايفون</h3>
+        <p style="font-size:13px;line-height:1.8;color:var(--tm);margin-bottom:20px">تطبيق مساند للهاتف المحمول هو تطبيق مدعوم من وزارة العمل في المملكة العربية السعودية لخدمة العمالة المنزلية حيث يمكنك من خلاله طلب تاشيرة توظيف أو تتبع حالة التأشيرات التي تم طلبها مسبقاً بسهولة، كما يمكنك استخدام آلية توثيق العامل.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://apps.apple.com/sa/app/musaned/id952572890" target="_blank" style="background:#000;color:#fff;text-decoration:none;padding:10px 18px;border-radius:10px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px"> Apple App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=sa.gov.musaned" target="_blank" style="background:#1a1a2e;color:#fff;text-decoration:none;padding:10px 18px;border-radius:10px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px">▶ Google Play</a>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:100px">📱</div>
+    </div>
+  </section>
+</div>
+
+<!-- ====== ARTICLES PAGE ====== -->
+<div id="page-articles" class="page">
+  <div class="phero"><div class="phbg"></div><div class="phov"></div><div class="phbc"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>المقالات</span></div></div>
+  <section style="background:#fff;padding:52px 36px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:40px"><h2 style="font-size:30px;font-weight:900">مقالات تهمك</h2><p style="font-size:13px;color:#888;margin-top:6px">اقرأ أحدث المقالات والنصائح المتعلقة بالاستقدام والعمالة المنزلية</p></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+        <div style="border-radius:16px;overflow:hidden;border:1px solid #eee;background:#fff;transition:box-shadow .3s" onmouseover="this.style.boxShadow='0 8px 30px rgba(0,0,0,.1)'" onmouseout="this.style.boxShadow='none'">
+          <div style="background:var(--g);padding:10px 14px;display:flex;align-items:center;justify-content:space-between"><span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px">December 21, 2025</span><span style="color:#fff;font-size:12px">📅</span></div>
+          <div style="padding:20px"><h3 style="font-size:14px;font-weight:800;margin-bottom:10px;line-height:1.6;color:var(--td)">Licensed Recruitment Offices in Saudi Arabia – A Complete Guide</h3><p style="font-size:12px;color:#777;line-height:1.7">Licensed recruitment offices in Saudi Arabia play a crucial role in providing reliable and legal access to domestic and professional workers. With the growing demand for household and skilled labor...</p><a href="#" style="color:var(--g);font-size:12px;font-weight:700;text-decoration:none;display:inline-block;margin-top:10px">اقرأ المزيد ←</a></div>
+        </div>
+        <div style="border-radius:16px;overflow:hidden;border:2px solid var(--g);background:#fff">
+          <div style="background:var(--g);padding:10px 14px;display:flex;align-items:center;justify-content:space-between"><span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px">December 21, 2025</span><span style="color:#fff;font-size:12px">📅</span></div>
+          <div style="padding:20px"><h3 style="font-size:14px;font-weight:800;margin-bottom:10px;line-height:1.6;color:var(--g)">Cost of Hiring a Private Driver in Saudi Arabia – A Complete Analysis</h3><p style="font-size:12px;color:#777;line-height:1.7">Understanding the cost of hiring a private driver in Saudi Arabia is essential for families and individuals who rely on daily transportation support...</p><a href="#" style="color:var(--g);font-size:12px;font-weight:700;text-decoration:none;display:inline-block;margin-top:10px">اقرأ المزيد ←</a></div>
+        </div>
+        <div style="border-radius:16px;overflow:hidden;border:1px solid #eee;background:#fff">
+          <div style="background:var(--g);padding:10px 14px;display:flex;align-items:center;justify-content:space-between"><span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px">December 21, 2025</span><span style="color:#fff;font-size:12px">📅</span></div>
+          <div style="padding:20px"><h3 style="font-size:14px;font-weight:800;margin-bottom:10px;line-height:1.6">When Is a Domestic Worker's Absconding Considered Legal in Saudi Arabia?</h3><p style="font-size:12px;color:#777;line-height:1.7">The issue of domestic worker absconding is one of the most sensitive employment-related matters in Saudi Arabia. Employers often ask: when is a domestic worker's absconding considered legal...</p><a href="#" style="color:var(--g);font-size:12px;font-weight:700;text-decoration:none;display:inline-block;margin-top:10px">اقرأ المزيد ←</a></div>
+        </div>
+        <div style="border-radius:16px;overflow:hidden;border:1px solid #eee;background:#fff">
+          <div style="height:180px;background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80') center/cover"></div>
+          <div style="background:var(--g);padding:10px 14px;display:flex;align-items:center;justify-content:space-between"><span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px">October 17, 2022</span></div>
+          <div style="padding:20px"><h3 style="font-size:14px;font-weight:800;margin-bottom:10px;line-height:1.6">خدمة معروفة</h3><p style="font-size:12px;color:#777;line-height:1.7">أطلقت وزارة العمل والتنمية الاجتماعية في سبتمبر 2019 خدمة جديدة لتخفيض تكاليف الاستقدام وهي خدمة (معروفة)...</p><a href="#" style="color:var(--g);font-size:12px;font-weight:700;text-decoration:none;display:inline-block;margin-top:10px">اقرأ المزيد ←</a></div>
+        </div>
+        <div style="border-radius:16px;overflow:hidden;border:1px solid #eee;background:#fff">
+          <div style="height:180px;background:url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80') center/cover"></div>
+          <div style="background:var(--g);padding:10px 14px;display:flex;align-items:center;justify-content:space-between"><span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px">July 21, 2025</span></div>
+          <div style="padding:20px"><h3 style="font-size:14px;font-weight:800;margin-bottom:10px;line-height:1.6;color:var(--g)">دليلك لاختيار العاملة المناسبة - افضل الجنسيات للاستقدام العاملات في السعودية</h3><p style="font-size:12px;color:#777;line-height:1.7">عند البحث عن عاملة مناسبة للمنزل في السعودية، أول ما يفكر فيه كثير من الأسر هو اختيار الجنسية المناسبة...</p><a href="#" style="color:var(--g);font-size:12px;font-weight:700;text-decoration:none;display:inline-block;margin-top:10px">اقرأ المزيد ←</a></div>
+        </div>
+        <div style="border-radius:16px;overflow:hidden;border:2px solid var(--g);background:#fff">
+          <div style="height:180px;background:url('https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&q=80') center/cover"></div>
+          <div style="background:var(--g);padding:10px 14px;display:flex;align-items:center;justify-content:space-between"><span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px">July 23, 2025</span></div>
+          <div style="padding:20px"><h3 style="font-size:14px;font-weight:800;margin-bottom:10px;line-height:1.6;color:var(--g)">مكاتب الاستقدام المعتمدة في السعودية - دليل شامل لاختيار المكتب الأفضل</h3><p style="font-size:12px;color:#777;line-height:1.7">تُعد مكاتب الاستقدام المعتمدة في السعودية حلاً أساسياً للأفراد والعائلات والشركات الباحثة عن عمالة منزلية أو مهنية بطريقة نظامية وآمنة...</p><a href="#" style="color:var(--g);font-size:12px;font-weight:700;text-decoration:none;display:inline-block;margin-top:10px">اقرأ المزيد ←</a></div>
+        </div>
+      </div>
+      <!-- Pagination -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:40px">
+        <button style="width:36px;height:36px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:14px">‹</button>
+        <button style="width:36px;height:36px;border-radius:50%;border:none;background:var(--g);color:#fff;cursor:pointer;font-size:14px;font-weight:700">1</button>
+        <button style="width:36px;height:36px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:14px">2</button>
+        <button style="width:36px;height:36px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:14px">3</button>
+        <button style="width:36px;height:36px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:14px">4</button>
+        <button style="width:36px;height:36px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:14px">5</button>
+        <button style="width:36px;height:36px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:14px">›</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ====== CONTACT PAGE ====== -->
+<div id="page-contact" class="page">
+  <div class="phero"><div class="phbg"></div><div class="phov"></div><div class="phbc"><a onclick="showPage('home')">الرئيسية</a><span>/</span><span>تواصل معنا</span></div></div>
+  <section style="background:#fff;padding:52px 36px">
+    <div style="max-width:1100px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+        <!-- Contact info -->
+        <div>
+          <h2 style="font-size:28px;font-weight:900;margin-bottom:8px">تواصل معنا</h2>
+          <p style="font-size:13px;color:#888;margin-bottom:28px">اطلب عاملتك الآن وسيقوم فريق خدمة العملاء لدينا بالتواصل معك بأسرع وقت</p>
+          <!-- Contact items -->
+          <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:28px">
+            <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#f5f9f5;border-radius:12px">
+              <div style="width:42px;height:42px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">📍</div>
+              <div><div style="font-size:12px;color:#999;font-weight:600;margin-bottom:2px">عنوان مقرنا</div><div style="font-size:13px;font-weight:700">الشيخ جابر الأحمد الصباح، حي المعيزيلة، الرياض 13231</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#f5f9f5;border-radius:12px">
+              <a href="tel:+9668003030309" style="width:42px;height:42px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;text-decoration:none">📞</a>
+              <div><div style="font-size:12px;color:#999;font-weight:600;margin-bottom:2px">المبيعات</div><div style="font-size:13px;font-weight:700"><a href="tel:+9668003030309" style="color:var(--g);text-decoration:none">8003030309</a></div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#f5f9f5;border-radius:12px">
+              <div style="width:42px;height:42px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💬</div>
+              <div><div style="font-size:12px;color:#999;font-weight:600;margin-bottom:2px">الشكاوي والاقتراحات</div><div style="font-size:13px;font-weight:700"><a href="tel:+9668003030309" style="color:var(--g);text-decoration:none">8003030309</a></div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#f5f9f5;border-radius:12px">
+              <div style="width:42px;height:42px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">✉️</div>
+              <div><div style="font-size:12px;color:#999;font-weight:600;margin-bottom:2px">البريد الالكتروني</div><div style="font-size:13px;font-weight:700">info@badralm.sa</div></div>
+            </div>
+          </div>
+          <!-- Map -->
+          <div style="border-radius:14px;overflow:hidden;height:300px">
+            <iframe src="https://maps.google.com/maps?q=24.7136,46.6753&output=embed&z=15" width="100%" height="300" style="border:none" loading="lazy"></iframe>
+          </div>
+        </div>
+        <!-- Contact form -->
+        <div style="background:#fff;border:1px solid #eee;border-radius:16px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,.06)">
+          <h3 style="font-size:20px;font-weight:900;margin-bottom:20px;color:var(--g)">ارسل رسالة</h3>
+          <div class="fg2"><div class="fl2">👤 الاسم كامل *</div><input class="fi2" type="text" placeholder="الاسم بالكامل"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div class="fg2"><div class="fl2">📞 رقم الهاتف *</div><input class="fi2" type="tel" placeholder="05xxxxxxxx"></div>
+            <div class="fg2"><div class="fl2">💬 الموضوع *</div><input class="fi2" type="text" value="استفسار"></div>
+          </div>
+          <div class="fg2"><div class="fl2">✏️ اكتب رسالتك *</div><textarea class="fi2" rows="6" placeholder="اكتب رسالتك هنا..." style="resize:vertical"></textarea></div>
+          <button class="bsub" style="display:flex;align-items:center;justify-content:center;gap:8px"><span>←</span> إرسال</button>
+          <!-- WhatsApp quick contact -->
+          <div style="margin-top:14px;text-align:center">
+            <a href="https://wa.me/966553722556" style="display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;text-decoration:none;padding:11px 24px;border-radius:25px;font-weight:700;font-size:13px;transition:all .2s">💬 تواصل عبر واتساب</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="prt"><div class="prti"><div class="prl"><span style="font-size:24px">🏛️</span><div class="prl-t">مساند</div></div><div class="prl"><span style="font-size:24px">📊</span><div class="prl-t">أبشر</div></div><div class="prl"><span style="font-size:24px">⚖️</span><div class="prl-t">وزارة العمل</div></div><div class="prl"><span style="font-size:24px">🏢</span><div class="prl-t">وزارة الخارجية</div></div></div></div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  var el=document.getElementById('page-'+id);
+  if(el){el.classList.add('active');window.scrollTo(0,0);}}</script></body></html>
